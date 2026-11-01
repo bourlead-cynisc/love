@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a0d23">
+  <meta name="description" content="Календарь нашего сердца — отмечаем каждый день с 12 августа 2026 по 20 августа 2027.">
+  <title>Наши дни ♡ — календарь-сердце</title>
+  <style>
+    :root{color-scheme:dark;--bg:#190d23;--bg2:#23112b;--panel:rgba(255,247,252,.075);--border:rgba(255,214,232,.13);--text:#fff5f8;--muted:#d7bdce;--rose:#ff80ac;--rose2:#ffc0d4;--gold:#f8d4a3;--shadow:0 24px 70px rgba(7,2,13,.34)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:300px;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(ellipse 60% 32% at 14% 4%,rgba(142,59,113,.30),transparent 85%),radial-gradient(ellipse 45% 32% at 90% 38%,rgba(112,55,121,.24),transparent 85%),linear-gradient(165deg,#160b20 0%,#28122d 50%,#150b20 100%);min-height:100vh;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(255,211,228,.20) .65px,transparent .65px);background-size:35px 35px;opacity:.24;mask-image:linear-gradient(to bottom,#000,transparent 90%)}
+    button{font:inherit}
+    button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    .wrap{position:relative;z-index:1;max-width:1210px;padding:0 28px;margin:auto}
+    header{height:89px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,221,233,.09)}
+    .brand{display:inline-flex;align-items:center;gap:11px;font-weight:750;letter-spacing:.06em;font-size:13px;text-transform:uppercase}
+    .brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:13px;background:linear-gradient(135deg,#ffb5cd,#ea6295);color:#4b1735;font-size:24px;box-shadow:0 6px 25px rgba(255,91,147,.22)}
+    .header-badge{font-size:12px;font-weight:650;color:#f6c4d6;border:1px solid rgba(255,179,212,.23);padding:10px 16px;border-radius:999px;background:rgba(255,167,204,.065)}
+    .hero{text-align:center;padding:66px 0 41px}
+    .eyebrow{color:var(--rose2);font-size:11px;letter-spacing:.26em;font-weight:800;text-transform:uppercase}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(43px,6.3vw,79px);font-weight:500;line-height:1.06;letter-spacing:-.045em;margin:16px auto 19px;max-width:900px}
+    .italic{font-style:italic;color:#ff94b9}
+    .hero-lead{max-width:610px;line-height:1.72;color:var(--muted);font-size:15px;margin:0 auto 24px}
+    .date-pill{display:inline-flex;gap:12px;align-items:center;padding:11px 18px;border:1px solid rgba(255,222,230,.14);background:rgba(255,255,255,.05);border-radius:999px;font-size:12px;color:#f7d9e4;letter-spacing:.04em}
+    .date-pill span{color:var(--rose)}
+    .dashboard{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(285px,.9fr);gap:18px;align-items:stretch}
+    .panel{background:linear-gradient(143deg,rgba(255,242,247,.083),rgba(255,224,245,.035));border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+    .heart-panel{padding:29px 29px 25px;position:relative;overflow:hidden;min-width:0}
+    .heart-panel:before{content:"";position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:65%;height:60%;background:radial-gradient(ellipse,rgba(252,83,137,.13),transparent 72%);pointer-events:none}
+    .panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;position:relative;z-index:1}
+    .section-label{font-size:11px;color:#f1adc8;text-transform:uppercase;letter-spacing:.18em;font-weight:750;margin-bottom:9px}
+    h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.025em;font-size:clamp(25px,3vw,32px);font-weight:500;margin-bottom:7px}
+    .panel-caption{color:var(--muted);font-size:12px;line-height:1.6;margin:0}
+    .tiny-heart{font-size:27px;color:#ff92b4;filter:drop-shadow(0 0 18px rgba(255,103,161,.34))}
+    .heart-grid{position:relative;display:grid;grid-template-columns:repeat(35,minmax(0,1fr));grid-template-rows:repeat(23,minmax(0,1fr));gap:clamp(1px,.23vw,3px);aspect-ratio:35/23;max-width:670px;width:100%;margin:20px auto 15px}
+    .heart-day{border:1px solid rgba(255,198,221,.13);min-width:0;min-height:0;padding:0;border-radius:clamp(2px,.35vw,5px);background:rgba(253,169,198,.19);color:rgba(255,240,246,.73);font-size:clamp(5px,.80vw,10px);font-weight:600;display:grid;place-items:center;cursor:pointer;position:relative;transition:background .14s,box-shadow .15s,transform .15s}
+    .heart-day:hover{transform:scale(1.22);background:rgba(255,179,206,.47);z-index:3}
+    .heart-day.checked{background:linear-gradient(135deg,#ffb3cb,#f46b9f);color:#521b38;border-color:rgba(255,223,234,.55);box-shadow:0 0 10px rgba(255,120,169,.28)}
+    .heart-day.checked:after{content:"";position:absolute;inset:12% 15%;background:linear-gradient(135deg,transparent calc(50% - 1px),rgba(109,31,70,.65) 50%,transparent calc(50% + 1px));pointer-events:none}
+    .heart-day.checked span{text-decoration:line-through;text-decoration-thickness:1px}
+    .heart-day.is-today{outline:2px solid #ffe4a8;outline-offset:1px;z-index:2}
+    .heart-day.first-day,.heart-day.last-day{border-color:rgba(255,237,195,.7)}
+    .heart-legend{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px;color:#d9bac9;font-size:11px}
+    .legend-entry{display:inline-flex;align-items:center;gap:8px}
+    .swatch{height:10px;width:10px;border-radius:3px;background:rgba(253,169,198,.19);border:1px solid rgba(255,198,221,.22)}
+    .swatch.done{background:linear-gradient(135deg,#ffb3cb,#f46b9f)}
+    .swatch.today{background:transparent;border:2px solid #ffe4a8}
+    .sidebar{display:flex;flex-direction:column;gap:18px}
+    .stats-panel{padding:29px;flex:1;display:flex;flex-direction:column}
+    .stat-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .stat-icon{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:rgba(255,115,167,.11);color:#ff9fbe;font-size:19px}
+    .progress-orb{margin:24px auto 17px;width:164px;height:164px;border-radius:50%;padding:12px;background:conic-gradient(#ff91b3 var(--pct,0%),rgba(255,218,235,.095) 0);box-shadow:0 0 35px rgba(255,101,150,.06);transition:background .3s}
+    .orb-inner{height:100%;width:100%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#24132e;border:1px solid rgba(255,195,220,.10)}
+    .orb-value{font-family:Georgia,serif;font-size:48px;line-height:1;letter-spacing:-.05em}
+    .orb-label{font-size:11px;color:#cda9be;margin-top:9px}
+    .stats-bottom{margin-top:auto;text-align:center}
+    .stats-bottom p{font-size:13px;color:#d9bccb;line-height:1.65}
+    .stats-bottom b{color:#fff4f8}
+    .linear-track{height:7px;border-radius:999px;background:rgba(255,207,228,.13);overflow:hidden}
+    .linear-fill{width:0;height:100%;background:linear-gradient(90deg,#f6669d,#ffd2e0);border-radius:999px;transition:width .3s}
+    .mini-stats{display:flex;justify-content:space-between;margin-top:12px;color:#d1aec3;font-size:11px}
+    .helper-panel{padding:26px 27px}
+    .helper-panel h3{font-family:Georgia,serif;font-size:21px;font-weight:500;margin:0 0 9px}
+    .helper-panel p{color:var(--muted);font-size:12px;line-height:1.72;margin:0 0 17px}
+    .helper-row{display:flex;gap:8px;flex-wrap:wrap}
+    .action{cursor:pointer;border-radius:12px;padding:11px 13px;color:#fff1f6;font-size:12px;font-weight:700;background:rgba(255,199,223,.09);border:1px solid rgba(255,206,224,.2);transition:background .2s,transform .2s}
+    .action:hover{background:rgba(255,173,205,.18);transform:translateY(-1px)}
+    .action.primary{border:0;background:linear-gradient(115deg,#ff8bb3,#ef6499);color:#42172f}
+    .action.ghost{padding:9px 11px;background:transparent;color:#d9b9c9;font-weight:600}
+    .month-section{margin:21px 0 60px;padding:31px 34px}
+    .month-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .month-nav{display:flex;align-items:center;gap:12px}
+    .month-title{font-family:Georgia,serif;font-size:21px;min-width:205px;text-align:center}
+    .arrow{border:1px solid rgba(255,218,232,.19);background:rgba(255,255,255,.07);width:39px;height:39px;color:#f9d9e5;border-radius:12px;font-size:20px;cursor:pointer}
+    .arrow:disabled{opacity:.3;cursor:default}
+    .arrow:not(:disabled):hover{background:rgba(255,179,211,.18)}
+    .month-layout{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:34px;align-items:stretch}
+    .weekday-row,.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+    .weekday-row{margin-bottom:8px}
+    .weekday{color:#c99bb6;font-size:12px;text-align:center;padding:9px 0;font-weight:700}
+    .day-cell{width:100%;min-height:61px;border:1px solid rgba(255,221,236,.10);border-radius:12px;background:rgba(255,255,255,.032);color:#ffe7f0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;transition:background .16s,border-color .16s}
+    .day-cell:hover:not(:disabled){border-color:#f49bc0;background:rgba(255,146,188,.12)}
+    .day-cell.selected{background:linear-gradient(140deg,rgba(255,149,188,.32),rgba(228,85,143,.19));border-color:rgba(255,175,205,.58)}
+    .day-cell.selected .number{text-decoration:line-through;text-decoration-color:#ffd4e1;text-decoration-thickness:2px}
+    .day-cell.today{box-shadow:inset 0 0 0 1.5px #f6d49b}
+    .day-cell:disabled{opacity:.2;cursor:default;background:transparent}
+    .number{font-size:15px;font-weight:650}
+    .day-dot{width:5px;height:5px;border-radius:50%;background:transparent}
+    .day-cell.selected .day-dot{background:#ffb3cb}
+    .day-empty{min-height:61px}
+    .month-note{background:radial-gradient(circle at 70% 0%,rgba(255,146,189,.16),transparent 70%),rgba(255,223,236,.045);border:1px solid rgba(255,222,235,.10);border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .month-note .flower{font-size:35px;margin-bottom:16px}
+    .month-note h3{font-family:Georgia,serif;font-size:23px;font-weight:500;line-height:1.22;margin-bottom:12px}
+    .month-note p{color:var(--muted);font-size:13px;line-height:1.7}
+    .month-note strong{font-size:25px;font-family:Georgia,serif;color:#ffabc8}
+    .footer{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;color:#a6879c;font-size:11px;border-top:1px solid rgba(255,203,221,.1);padding:20px 0 35px}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,25px);background:#ffe2eb;color:#53283e;border-radius:13px;padding:13px 20px;font-size:13px;font-weight:650;box-shadow:0 16px 50px rgba(8,2,15,.5);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s;z-index:20;max-width:min(90vw,480px);text-align:center}
+    .toast.show{transform:translate(-50%,0);opacity:1}
+    @media(max-width:940px){.dashboard{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.stats-panel{min-height:320px}.month-layout{grid-template-columns:minmax(0,1fr) 210px;gap:18px}}
+    @media(max-width:650px){.wrap{padding:0 15px}header{height:73px}.brand{font-size:11px}.header-badge{font-size:10px;padding:9px 11px}.hero{padding:49px 0 35px}.hero-lead{font-size:13px}.date-pill{font-size:11px}.heart-panel{padding:21px 13px 23px;border-radius:20px}.heart-grid{margin:23px auto 20px;gap:1px}.heart-day{border-radius:2px;font-size:0}.heart-day span{font-size:0}.heart-day:hover{transform:none}.sidebar{grid-template-columns:1fr;gap:14px}.stats-panel{min-height:0;padding:22px}.progress-orb{height:146px;width:146px;margin:16px auto}.helper-panel{padding:23px}.month-section{border-radius:20px;padding:23px 12px;margin:15px 0 32px}.month-top{justify-content:center;text-align:center}.month-nav{width:100%;justify-content:center}.month-title{min-width:170px;font-size:20px}.month-layout{grid-template-columns:1fr}.month-note{display:none}.day-cell,.day-empty{min-height:45px;border-radius:9px}.weekday-row,.month-grid{gap:4px}.number{font-size:14px}.weekday{font-size:11px}.footer{justify-content:center;text-align:center}.panel-heading{padding:0 8px}.heart-legend{font-size:10px;gap:9px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">♥</span><span>Наша маленькая вечность</span></div>
+      <div class="header-badge">С любовью, каждый день ♡</div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Наш календарь · 374 дня</div>
+        <h1>Любовь складывается<br>из <span class="italic">маленьких дней.</span></h1>
+        <p class="hero-lead">Один день — одно сердечко. Отмечай прожитые моменты, и наше большое сердце будет наполняться теплом.</p>
+        <div class="date-pill"><span>✦</span> 12 августа 2026 <span>—</span> 20 августа 2027 <span>✦</span></div>
+      </section>
+      <section class="dashboard" aria-label="Наш календарь-сердце">
+        <article class="panel heart-panel">
+          <div class="panel-heading"><div><div class="section-label">Все наши дни</div><h2>Сердце времени</h2><p class="panel-caption">Нажми на клеточку, чтобы зачеркнуть день. На телефоне удобнее отмечать даты в календаре ниже.</p></div><div class="tiny-heart" aria-hidden="true">♡</div></div>
+          <div class="heart-grid" id="heartGrid" aria-label="Сердце из 374 кнопок-дней"></div>
+          <div class="heart-legend"><span class="legend-entry"><i class="swatch"></i> Не отмечен</span><span class="legend-entry"><i class="swatch done"></i> Зачёркнут</span><span class="legend-entry"><i class="swatch today"></i> Сегодня</span></div>
+        </article>
+        <div class="sidebar">
+          <article class="panel stats-panel">
+            <div class="stat-top"><div><div class="section-label">Шаг за шагом</div><h2>Наш прогресс</h2></div><div class="stat-icon" aria-hidden="true">♥</div></div>
+            <div class="progress-orb" id="progressOrb" style="--pct:0%"><div class="orb-inner"><span class="orb-value" id="markedCount">0</span><span class="orb-label">из 374 дней</span></div></div>
+            <div class="stats-bottom"><p><b id="remainingCount">374</b> дня ещё можно отметить.<br>Каждый из них важен ♡</p><div class="linear-track" role="progressbar" aria-label="Доля отмеченных дней" aria-valuemin="0" aria-valuemax="374" aria-valuenow="0" id="progressbar"><div class="linear-fill" id="linearFill"></div></div><div class="mini-stats"><span>12.08.2026</span><span id="percentText">0%</span><span>20.08.2027</span></div></div>
+          </article>
+          <article class="panel helper-panel">
+            <h3>Всё хранится у тебя ♡</h3>
+            <p id="storageInfo">Отметки сохраняются автоматически в этом браузере. На каждом телефоне — свой календарь. Чтобы перенести их на другой телефон, используй копию.</p>
+            <div class="helper-row"><button class="action primary" id="exportBtn" type="button">↓ Сохранить копию</button><button class="action" id="importBtn" type="button">↑ Загрузить копию</button></div>
+            <input type="file" id="importFile" accept=".json,application/json" hidden>
+          </article>
+        </div>
+      </section>
+      <section class="panel month-section" id="calendarSection" aria-label="Календарь по месяцам">
+        <div class="month-top"><div><div class="section-label">Удобно на каждый день</div><h2>Календарь наших моментов</h2><p class="panel-caption">Нажимай на дату, чтобы поставить или убрать зачёркивание.</p></div><div class="month-nav"><button class="arrow" type="button" id="prevMonth" aria-label="Предыдущий месяц">‹</button><span class="month-title" id="monthTitle"></span><button class="arrow" type="button" id="nextMonth" aria-label="Следующий месяц">›</button></div></div>
+        <div class="month-layout">
+          <div><div class="weekday-row"><div class="weekday">Пн</div><div class="weekday">Вт</div><div class="weekday">Ср</div><div class="weekday">Чт</div><div class="weekday">Пт</div><div class="weekday">Сб</div><div class="weekday">Вс</div></div><div class="month-grid" id="monthGrid"></div></div>
+          <aside class="month-note"><span class="flower" aria-hidden="true">✿</span><h3>Пусть каждый день будет частью нашей истории</h3><p>Ты можешь возвращаться к любому дню, менять отметки и наблюдать, как растёт сердце.</p><p><strong id="monthMarked">0</strong><br>отмечено в этом месяце</p><button type="button" class="action ghost" id="resetBtn">Сбросить все отметки</button></aside>
+        </div>
+        <div style="text-align:center;margin-top:18px"><button type="button" class="action ghost" id="resetMobileBtn">Очистить все отметки</button></div>
+      </section>
+    </main>
+    <footer class="footer"><span>Сделано с любовью ♥</span><span>Никаких аккаунтов, рекламы и передачи отметок на сервер.</span></footer>
+  </div>
+  <div role="status" aria-live="polite" class="toast" id="toast"></div>
+  <script>
+  (function () {
+    'use strict';
+    var START = new Date(2026,7,12,12);
+    var END = new Date(2027,7,20,12);
+    var KEY = 'love-heart-calendar-2026-2027-v1';
+    var COLS = 35, ROWS = 23;
+    var dates = [];
+    var iterator = new Date(START);
+    while (iterator <= END) { dates.push(new Date(iterator)); iterator.setDate(iterator.getDate()+1); }
+    var TOTAL = dates.length;
+    var allowed = new Set(dates.map(dateKey));
+    var today = dateKey(new Date());
+    var selected = new Set();
+    var storageWorks = true;
+    var monthIndex = Math.min(12,Math.max(0,(new Date().getFullYear()-2026)*12 + new Date().getMonth()-7));
+    var heartButtons = new Map();
+    var monthGrid = document.getElementById('monthGrid');
+    var heartGrid = document.getElementById('heartGrid');
+    var toastTimer;
+    function pad(n){return String(n).padStart(2,'0');}
+    function dateKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+    function fullDate(d){return new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric'}).format(d);}
+    function notify(message){var el=document.getElementById('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('show');},2600);}
+    try {
+      var saved = JSON.parse(localStorage.getItem(KEY)||'[]');
+      if(Array.isArray(saved)) saved.forEach(function(s){if(typeof s==='string' && allowed.has(s)) selected.add(s);});
+      localStorage.setItem(KEY,JSON.stringify(Array.from(selected)));
+    } catch(error) {
+      storageWorks=false;
+      document.getElementById('storageInfo').textContent='Браузер запретил локальное хранение. Отметки работают, но могут пропасть после перезагрузки. Разреши хранение данных сайта в настройках браузера.';
+    }
+    function store(){
+      if(!storageWorks)return;
+      try{localStorage.setItem(KEY,JSON.stringify(Array.from(selected).sort()));}
+      catch(error){storageWorks=false;document.getElementById('storageInfo').textContent='Не удалось сохранить отметки. Экспортируй копию, чтобы не потерять их.';notify('Сохранение заблокировано браузером');}
+    }
+    function toggle(key){
+      if(!allowed.has(key))return;
+      if(selected.has(key)) selected.delete(key); else selected.add(key);
+      store();updateHeart();updateStats();renderMonth();
+    }
+    function generateHeartPositions(){
+      var candidates=[];
+      for(var row=0;row<ROWS;row++){
+        for(var col=0;col<COLS;col++){
+          var x=((col+.5)/COLS*2-1)*1.45;
+          var y=(1-(row+.5)/ROWS*2)*1.35;
+          var v=Math.pow(x*x+y*y-1,3)-x*x*y*y*y;
+          if(v<=0)candidates.push({r:row,c:col,depth:-v});
+        }
+      }
+      // Trim only the outermost cells, preserving the recognizable heart outline.
+      var excess=Math.max(0,candidates.length-TOTAL);
+      var pruned=new Set(candidates.slice().sort(function(a,b){return a.depth-b.depth;}).slice(0,excess).map(function(p){return p.r+':'+p.c;}));
+      return candidates.filter(function(p){return !pruned.has(p.r+':'+p.c);}).sort(function(a,b){return a.r-b.r||a.c-b.c;}).slice(0,TOTAL);
+    }
+    function buildHeart(){
+      var positions=generateHeartPositions();
+      var frag=document.createDocumentFragment();
+      dates.forEach(function(d,i){
+        var p=positions[i],key=dateKey(d);
+        if(!p)return;
+        var btn=document.createElement('button');
+        btn.type='button';btn.className='heart-day';
+        btn.style.gridRow=String(p.r+1);btn.style.gridColumn=String(p.c+1);
+        var txt=document.createElement('span');txt.textContent=String(d.getDate());btn.appendChild(txt);
+        btn.title=fullDate(d)+' — нажми, чтобы отметить или снять отметку';
+        btn.setAttribute('aria-label',fullDate(d));btn.setAttribute('aria-pressed','false');
+        if(i===0)btn.classList.add('first-day');
+        if(i===TOTAL-1)btn.classList.add('last-day');
+        if(key===today)btn.classList.add('is-today');
+        btn.addEventListener('click',function(){toggle(key);});
+        heartButtons.set(key,btn);frag.appendChild(btn);
+      });
+      heartGrid.appendChild(frag);
+    }
+    function updateHeart(){
+      heartButtons.forEach(function(btn,key){
+        var active=selected.has(key);
+        btn.classList.toggle('checked',active);
+        btn.setAttribute('aria-pressed',String(active));
+        btn.title=btn.getAttribute('aria-label')+(active?' — зачёркнут':' — не отмечен');
+      });
+    }
+    function updateStats(){
+      var count=selected.size, percent=Math.round(count/TOTAL*100),pct=count/TOTAL*100;
+      document.getElementById('markedCount').textContent=String(count);
+      document.getElementById('remainingCount').textContent=String(TOTAL-count);
+      document.getElementById('percentText').textContent=String(percent)+'%';
+      document.getElementById('linearFill').style.width=String(pct)+'%';
+      document.getElementById('progressOrb').style.setProperty('--pct',String(pct)+'%');
+      document.getElementById('progressbar').setAttribute('aria-valuenow',String(count));
+    }
+    function renderMonth(){
+      var monthDate=new Date(2026,7+monthIndex,1,12);
+      var year=monthDate.getFullYear(),month=monthDate.getMonth();
+      var title=new Intl.DateTimeFormat('ru-RU',{month:'long',year:'numeric'}).format(monthDate);
+      document.getElementById('monthTitle').textContent=title.charAt(0).toUpperCase()+title.slice(1);
+      document.getElementById('prevMonth').disabled=monthIndex===0;
+      document.getElementById('nextMonth').disabled=monthIndex===12;
+      var firstDay=(monthDate.getDay()+6)%7;
+      var limit=new Date(year,month+1,0,12).getDate();
+      var frag=document.createDocumentFragment(),monthSelected=0;
+      for(var empty=0;empty<firstDay;empty++){var space=document.createElement('div');space.className='day-empty';frag.appendChild(space);}
+      for(var n=1;n<=limit;n++){
+        var date=new Date(year,month,n,12),key=dateKey(date),active=selected.has(key),inRange=allowed.has(key);
+        if(active)monthSelected++;
+        var btn=document.createElement('button');
+        btn.type='button';btn.className='day-cell';btn.disabled=!inRange;
+        if(active)btn.classList.add('selected');
+        if(key===today)btn.classList.add('today');
+        btn.setAttribute('aria-pressed',String(active));
+        btn.setAttribute('aria-label',fullDate(date)+(active?', зачёркнут':', не отмечен'));
+        var digit=document.createElement('span');digit.className='number';digit.textContent=String(n);
+        var dot=document.createElement('span');dot.className='day-dot';dot.setAttribute('aria-hidden','true');
+        btn.appendChild(digit);btn.appendChild(dot);
+        if(inRange){(function(k){btn.addEventListener('click',function(){toggle(k);});})(key);}
+        frag.appendChild(btn);
+      }
+      monthGrid.replaceChildren(frag);
+      document.getElementById('monthMarked').textContent=String(monthSelected);
+    }
+    document.getElementById('prevMonth').addEventListener('click',function(){monthIndex=Math.max(0,monthIndex-1);renderMonth();});
+    document.getElementById('nextMonth').addEventListener('click',function(){monthIndex=Math.min(12,monthIndex+1);renderMonth();});
+    document.getElementById('exportBtn').addEventListener('click',function(){
+      var data=JSON.stringify({version:1,calendar:'love-heart-2026-2027',marked:Array.from(selected).sort()},null,2);
+      var blob=new Blob([data],{type:'application/json;charset=utf-8'});
+      var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='nashi-dni-backup.json';document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},2000);notify('Резервная копия сохранена');
+    });
+    document.getElementById('importBtn').addEventListener('click',function(){document.getElementById('importFile').click();});
+    document.getElementById('importFile').addEventListener('change',function(event){
+      var file=event.target.files&&event.target.files[0];if(!file)return;
+      file.text().then(function(text){
+        var data=JSON.parse(text);
+        if(!data||data.calendar!=='love-heart-2026-2027'||!Array.isArray(data.marked))throw new Error('Некорректный файл календаря');
+        if(!data.marked.every(function(v){return typeof v==='string'&&allowed.has(v);}))throw new Error('В файле есть даты вне календаря');
+        if(!confirm('Заменить текущие отметки данными из резервной копии?'))return;
+        selected=new Set(data.marked);store();updateHeart();updateStats();renderMonth();notify('Отметки восстановлены ♡');
+      }).catch(function(){notify('Не удалось прочитать файл календаря');}).finally(function(){event.target.value='';});
+    });
+    function reset(){
+      if(confirm('Удалить все '+selected.size+' отметок на этом устройстве? Это действие нельзя отменить без резервной копии.')){
+        selected.clear();store();updateHeart();updateStats();renderMonth();notify('Все отметки очищены');
+      }
+    }
+    document.getElementById('resetBtn').addEventListener('click',reset);
+    document.getElementById('resetMobileBtn').addEventListener('click',reset);
+    buildHeart();updateHeart();updateStats();renderMonth();
+  })();
+  </script>
+</body>
+</html>
